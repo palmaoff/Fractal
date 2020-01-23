@@ -3,6 +3,7 @@
 # define WIDTH 2048
 # define HEIGHT 1080
 # define MENU_WIDHT 300
+# define DEPTH 1000
 
 # include <stdio.h> // KILL ME
 # include "mlx.h"
@@ -20,6 +21,12 @@ typedef struct		s_img
 	int				bpp;
 	int				endian;
 }					t_img;
+
+typedef struct		s_cmplx
+{
+	double	re;
+	double	im;
+}					t_cmplx;
 
 typedef	struct		s_mlx
 {

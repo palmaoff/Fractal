@@ -39,6 +39,7 @@ int		main()
 
 	init(&mlx);
 	mlx_hook(mlx.win, 2, 0, key_press, &mlx);
+	fractal(&mlx);
 //	mlx_hook(mlx.win, 4, 0, hook_mouse, &mlx);
 //	mlx_hook(mlx.win, 5, 0, mouse_release, &mlx);
 //	mlx_hook(mlx.win, 6, 0, mouse_move, &mlx);

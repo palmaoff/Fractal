@@ -29,7 +29,7 @@ int		hook_exit(void *param)
 void	init(t_mlx *mlx)
 {
 	mlx->mlx = mlx_init();
-	mlx->win = mlx_new_window(mlx->mlx, WIDTH, HEIGHT, "42");
+	mlx->win = mlx_new_window(mlx->mlx, WIDTH, HEIGHT, "fractol");
 	img_new(mlx);
 }
 
@@ -39,7 +39,7 @@ int		main()
 
 	init(&mlx);
 	mlx_hook(mlx.win, 2, 0, key_press, &mlx);
-	fractal(&mlx);
+	fractol(&mlx);
 //	mlx_hook(mlx.win, 4, 0, hook_mouse, &mlx);
 //	mlx_hook(mlx.win, 5, 0, mouse_release, &mlx);
 //	mlx_hook(mlx.win, 6, 0, mouse_move, &mlx);

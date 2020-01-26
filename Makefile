@@ -1,7 +1,8 @@
-NAME = fractal
+NAME = fractol
 
 SRC =   main.c \
-		img.c
+		img.c \
+		fractol.c 
 
 OBJ = $(addprefix $(OBJDIR), $(SRC:.c=.o))
 
@@ -22,10 +23,11 @@ SRCDIR	= ./src/
 INKDIR	= ./includes/
 OBJDIR	= ./obj/
 
-all: $(NAME)
+all: $(NAME) 
 
-$(NAME): obj $(MLX_LIB) $(LIBFT) $(OBJ) ./libft/*
+$(NAME): obj $(MLX_LIB) $(LIBFT) $(OBJ) ./libft/
 		@$(CC) $(FLAGS) $(OBJ) $(MLX_LNK) -o $(NAME) $(LIBFT)
+		@echo "\033[32m- fractol compiled\033[0m"
 
 obj:
 	@mkdir -p $(OBJDIR)
@@ -35,17 +37,22 @@ $(OBJDIR)%.o:$(SRCDIR)%.c
 		
 $(MLX_LIB):
 	@make -C $(MLX)
+	@echo "\033[32m- libmlx compiled\033[0m"
 
 $(LIBFT):
 	@make -C $(LIB)
+	@echo "\033[32m- libft compiled\033[0m"
 
 clean:
 		@rm -f $(OBJ)
 		@make -C $(LIB) clean
 		@make -C $(MLX) clean
+		@echo "\033[31m- fractol object files removed\033[0m"
 
 fclean: clean
 		@rm -f $(NAME)
+		@make -C $(MLX) clean
+		@echo "\033[31m- libmlx.a removed\033[0m"
 		@make -C $(LIB) fclean
 
 re: fclean all

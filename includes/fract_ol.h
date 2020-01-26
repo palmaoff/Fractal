@@ -1,7 +1,7 @@
 #ifndef FRACT__OL_H
 # define FRACT__OL_H
-# define WIDTH 2048
-# define HEIGHT 1080
+# define WIDTH 720
+# define HEIGHT 720
 # define MENU_WIDHT 300
 # define DEPTH 1000
 
@@ -37,5 +37,6 @@ typedef	struct		s_mlx
 }					t_mlx;
 
 void	img_new(t_mlx *mlx);
+void	fractol(t_mlx *mlx);
 
 #endif

@@ -2,7 +2,8 @@ NAME = fractol
 
 SRC =   main.c \
 		img.c \
-		fractol.c 
+		fractol.c \
+		key.c
 
 OBJ = $(addprefix $(OBJDIR), $(SRC:.c=.o))
 

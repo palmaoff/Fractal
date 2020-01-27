@@ -12,14 +12,6 @@
 
 #include "../includes/fract_ol.h"
 
-int				key_press(int keycode, t_mlx *mlx)
-{
-	(void)mlx;
-	if (keycode == 53)
-		exit(0);
-	return (0);
-}
-
 int		hook_exit(void *param)
 {
 	(void)param;
@@ -31,6 +23,15 @@ void	init(t_mlx *mlx)
 	mlx->mlx = mlx_init();
 	mlx->win = mlx_new_window(mlx->mlx, WIDTH, HEIGHT, "fractol");
 	img_new(mlx);
+	mlx->min.re = -2.0;
+	mlx->max.re = 2.0;
+	mlx->min.im = -2.0;
+	mlx->max.im = mlx->min.im + (mlx->max.re - mlx->min.re) * HEIGHT / WIDTH;
+	mlx->r = 0x030000;
+	mlx->g = 0x000300;
+	mlx->b = 0x000003;
+	mlx->scrn.re = (mlx->max.re - mlx->min.re) / (WIDTH - 1);
+	mlx->scrn.im = (mlx->max.im - mlx->min.im) / (HEIGHT - 1);
 }
 
 int		main()
@@ -39,10 +40,10 @@ int		main()
 
 	init(&mlx);
 	mlx_hook(mlx.win, 2, 0, key_press, &mlx);
-	fractol(&mlx);
-//	mlx_hook(mlx.win, 4, 0, hook_mouse, &mlx);
-//	mlx_hook(mlx.win, 5, 0, mouse_release, &mlx);
-//	mlx_hook(mlx.win, 6, 0, mouse_move, &mlx);
+	draw_fractal(&mlx);
+	// mlx_hook(mlx.win, 4, 0, hook_mouse, &mlx);
+	// mlx_hook(mlx.win, 5, 0, mouse_release, &mlx);
+	// mlx_hook(mlx.win, 6, 0, mouse_move, &mlx);
 	mlx_hook(mlx.win, 17, 0, hook_exit, mlx.mlx);
 	mlx_loop(mlx.mlx);
 	return (0);

@@ -1,9 +1,7 @@
 #ifndef FRACT__OL_H
 # define FRACT__OL_H
-# define WIDTH 720
-# define HEIGHT 720
-# define MENU_WIDHT 300
-# define DEPTH 1000
+# define WIDTH 1080
+# define HEIGHT 1080
 
 # include <stdio.h> // KILL ME
 # include "mlx.h"
@@ -34,9 +32,22 @@ typedef	struct		s_mlx
 	void			*mlx;
 	void			*win;
 	t_img			img;
+	t_cmplx			min;
+	t_cmplx			max;
+	t_cmplx 		scrn;
+	int				r;
+	int				g;
+	int				b;
+	double			zoom;
+	double			x_mv;
+	double			y_mv;
 }					t_mlx;
 
-void	img_new(t_mlx *mlx);
-void	fractol(t_mlx *mlx);
+void			img_new(t_mlx *mlx);
+void			fractol(t_mlx *mlx);
+void			die(char *str); // maybe
+int				key_press(int keycode, t_mlx *mlx);
+void			draw_fractal(t_mlx *mlx);
+int				mandelbrot(t_mlx *mlx, int x, int y);
 
 #endif

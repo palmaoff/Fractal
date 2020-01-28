@@ -6,8 +6,7 @@
 # include <stdio.h> // KILL ME
 # include "mlx.h"
 # include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
+# include <pthread.h>
 # include <math.h>
 # include "../libft/libft.h"
 
@@ -41,13 +40,17 @@ typedef	struct		s_mlx
 	double			zoom;
 	double			x_mv;
 	double			y_mv;
+	pthread_t		p[20];
+	size_t			i;
 }					t_mlx;
 
 void			img_new(t_mlx *mlx);
 void			fractol(t_mlx *mlx);
 void			die(char *str); // maybe
 int				key_press(int keycode, t_mlx *mlx);
-void			draw_fractal(t_mlx *mlx);
+void			draw_fractal(t_mlx *mlx, int s, int e);
 int				mandelbrot(t_mlx *mlx, int x, int y);
-
+t_cmplx 		init_cmplx(double re, double im);
+int				zoom(int button, int x, int y, t_mlx *mlx);
+void			peaces(t_mlx *mlx);
 #endif

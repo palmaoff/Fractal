@@ -30,8 +30,7 @@ void	init(t_mlx *mlx)
 	mlx->r = 0x030000;
 	mlx->g = 0x000300;
 	mlx->b = 0x000003;
-	mlx->scrn.re = (mlx->max.re - mlx->min.re) / (WIDTH - 1);
-	mlx->scrn.im = (mlx->max.im - mlx->min.im) / (HEIGHT - 1);
+	mlx->i = 0;
 }
 
 int		main()
@@ -40,10 +39,11 @@ int		main()
 
 	init(&mlx);
 	mlx_hook(mlx.win, 2, 0, key_press, &mlx);
-	draw_fractal(&mlx);
-	// mlx_hook(mlx.win, 4, 0, hook_mouse, &mlx);
+	peaces(&mlx);
+	mlx_hook(mlx.win, 4, 0, zoom, &mlx);
 	// mlx_hook(mlx.win, 5, 0, mouse_release, &mlx);
 	// mlx_hook(mlx.win, 6, 0, mouse_move, &mlx);
+	// mlx_hook(fractol->window, 4, 0, zoom, fractol);
 	mlx_hook(mlx.win, 17, 0, hook_exit, mlx.mlx);
 	mlx_loop(mlx.mlx);
 	return (0);

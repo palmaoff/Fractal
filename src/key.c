@@ -74,6 +74,6 @@ int				key_press(int keycode, t_mlx *mlx)
 		mlx->b += 0x000001;
 	if (keycode == 92)
 		mlx->b = 0x000000;
-	draw_fractal(mlx);
+	peaces(mlx);
 	return (0);
 }

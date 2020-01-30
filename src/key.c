@@ -46,13 +46,13 @@ int				key_press(int keycode, t_mlx *mlx)
 	if (keycode == 53)
 		exit(0);
 	if (keycode == 0)
-		mlx->x_mv -= 0.01;
+		mlx->x_mv -= mlx->delta;
 	if (keycode == 2)
-		mlx->x_mv += 0.01;
+		mlx->x_mv += mlx->delta;
 	if (keycode == 13)
-		mlx->y_mv += 0.01;
+		mlx->y_mv += mlx->delta;
 	if (keycode == 1)
-		mlx->y_mv -= 0.01;
+		mlx->y_mv -= mlx->delta;
 	if (keycode == 83)
 		if (mlx->r != 0)
 			mlx->r -= 0x010000;
@@ -74,6 +74,11 @@ int				key_press(int keycode, t_mlx *mlx)
 		mlx->b += 0x000001;
 	if (keycode == 92)
 		mlx->b = 0x000000;
+	if (keycode == 69 & mlx->depth != 500)
+		mlx->depth += 5;
+	if (keycode == 78 && mlx->depth != 0)
+		mlx->depth -= 5;
+//	printf("%d\n", keycode);
 	peaces(mlx);
 	return (0);
 }

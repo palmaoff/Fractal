@@ -13,7 +13,7 @@ void	draw_fractal(t_mlx *mlx, int s, int e)
 {
 	int x;
 	int	y;
-	int i;
+	size_t i;
 	int color;
 
 	y = s;
@@ -22,9 +22,11 @@ void	draw_fractal(t_mlx *mlx, int s, int e)
 		x = 0;
 		while (x < WIDTH)
 		{
-			i = mandelbrot(mlx, x, y);
+			mlx->scrn.re = (mlx->max.re - mlx->min.re) / (WIDTH - 1);
+			mlx->scrn.im = (mlx->max.im - mlx->min.im) / (HEIGHT - 1);
+			i = meduza(mlx, x, y);
 			color = i * mlx->r + i * mlx->g + i * mlx->b;
-			mlx->img.data[y * WIDTH + x] = (i < 50) ? color : 0;
+			mlx->img.data[y * WIDTH + x] = (i < mlx->depth) ? color : 0;
 			x++;
 		}
 		y++;
@@ -39,9 +41,7 @@ int		mandelbrot(t_mlx *mlx, int x, int y)
 	size_t	i;
 
 	i = 0;
-	max_i = 50;
-	mlx->scrn.re = (mlx->max.re - mlx->min.re) / (WIDTH - 1);
-	mlx->scrn.im = (mlx->max.im - mlx->min.im) / (HEIGHT - 1);
+	max_i = mlx->depth;
 	c.im = mlx->max.im - y * mlx->scrn.im + mlx->y_mv;
 	c.re = mlx->min.re + x * mlx->scrn.re + mlx->x_mv;
 	z = init_cmplx(c.re, c.im);
@@ -51,6 +51,56 @@ int		mandelbrot(t_mlx *mlx, int x, int y)
 		z.re * z.re - z.im * z.im + c.re,
 		2.0 * z.re * z.im + c.im);
 		i++;
+	}
+	return (i);
+}
+
+int		julia(t_mlx *mlx, int x, int y)
+{
+	t_cmplx	c;
+	t_cmplx	k;
+	t_cmplx	z;
+	size_t	max_i;
+	size_t	i;
+
+	i = 0;
+	max_i = mlx->depth;
+	c.im = mlx->max.im - y * mlx->scrn.im + mlx->y_mv;
+	c.re = mlx->min.re + x * mlx->scrn.re + mlx->x_mv;
+	z = init_cmplx(c.re, c.im);
+//	mlx->k = init_cmplx(-0.4, 0.6);
+	k = mlx->k;
+	i = 0;
+	while (z.re * z.re + z.im * z.im <= 4
+    	&& i < max_i)
+	{
+    	z = init_cmplx(
+        z.re * z.re - z.im * z.im + k.re,
+        	2.0 * z.re * z.im + k.im);
+    	i++;
+	}
+	return (i);
+}
+
+int		meduza(t_mlx *mlx, int x, int y)
+{
+	t_cmplx	c;
+	t_cmplx	z;
+	size_t	max_i;
+	size_t	i;
+
+	i = 0;
+	max_i = mlx->depth;
+	c.im = mlx->max.im - y * mlx->scrn.im + mlx->y_mv;
+	c.re = mlx->min.re + x * mlx->scrn.re + mlx->x_mv;
+	z = init_cmplx(c.re, c.im);
+	while (z.re * z.re + z.im * z.im <= 4
+    	&& i < max_i)
+	{
+    	z = init_cmplx(
+        	fabs(z.re * z.re - z.im * z.im) + c.re,
+        	-2.0 * z.re * z.im + c.im);
+    	i++;
 	}
 	return (i);
 }

@@ -30,7 +30,8 @@ void	init(t_mlx *mlx)
 	mlx->r = 0x030000;
 	mlx->g = 0x000300;
 	mlx->b = 0x000003;
-	mlx->i = 0;
+	mlx->delta = (mlx->max.re - mlx->min.re) / 400;
+	mlx->depth = 50;
 }
 
 int		main()

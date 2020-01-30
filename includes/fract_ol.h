@@ -2,6 +2,7 @@
 # define FRACT__OL_H
 # define WIDTH 1080
 # define HEIGHT 1080
+# define PEACES 10
 
 # include <stdio.h> // KILL ME
 # include "mlx.h"
@@ -37,12 +38,19 @@ typedef	struct		s_mlx
 	int				r;
 	int				g;
 	int				b;
-	double			zoom;
+	t_cmplx			k;
+	double			delta;
 	double			x_mv;
 	double			y_mv;
-	pthread_t		p[20];
-	size_t			i;
+	size_t			depth;
 }					t_mlx;
+
+typedef struct		s_peace
+{
+	t_mlx			*mlx;
+	pthread_t		p;
+	int				i;
+}					t_peace;
 
 void			img_new(t_mlx *mlx);
 void			fractol(t_mlx *mlx);
@@ -53,4 +61,8 @@ int				mandelbrot(t_mlx *mlx, int x, int y);
 t_cmplx 		init_cmplx(double re, double im);
 int				zoom(int button, int x, int y, t_mlx *mlx);
 void			peaces(t_mlx *mlx);
+int				julia(t_mlx *mlx, int x, int y);
+int				julia_motion(int x, int y, t_mlx *mlx);
+int				meduza(t_mlx *mlx, int x, int y);
+
 #endif

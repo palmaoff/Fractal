@@ -5,7 +5,8 @@ SRC =   main.c \
 		fractol.c \
 		key.c \
 		zoom.c \
-		peaces.c
+		peaces.c \
+		input.c
 
 OBJ = $(addprefix $(OBJDIR), $(SRC:.c=.o))
 

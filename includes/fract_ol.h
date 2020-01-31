@@ -2,7 +2,7 @@
 # define FRACT__OL_H
 # define WIDTH 1080
 # define HEIGHT 1080
-# define PEACES 10
+# define PEACES 8
 
 # include <stdio.h> // KILL ME
 # include "mlx.h"
@@ -43,6 +43,8 @@ typedef	struct		s_mlx
 	double			x_mv;
 	double			y_mv;
 	size_t			depth;
+	int				bool;
+	int				(*f)(struct s_mlx *mlx, int x, int y);
 }					t_mlx;
 
 typedef struct		s_peace
@@ -64,5 +66,7 @@ void			peaces(t_mlx *mlx);
 int				julia(t_mlx *mlx, int x, int y);
 int				julia_motion(int x, int y, t_mlx *mlx);
 int				meduza(t_mlx *mlx, int x, int y);
+int				sierpinski(t_mlx *mlx, int x, int y);
+void    		input(char *s, t_mlx *mlx);
 
 #endif

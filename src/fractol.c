@@ -24,15 +24,20 @@ void	draw_fractal(t_mlx *mlx, int s, int e)
 		{
 			mlx->scrn.re = (mlx->max.re - mlx->min.re) / (WIDTH - 1);
 			mlx->scrn.im = (mlx->max.im - mlx->min.im) / (HEIGHT - 1);
-			i = meduza(mlx, x, y);
-			color = i * mlx->r + i * mlx->g + i * mlx->b;
+			i = mlx->f(mlx, x, y);
+			color = i * (mlx->r + mlx->g + mlx->b);
 			mlx->img.data[y * WIDTH + x] = (i < mlx->depth) ? color : 0;
 			x++;
 		}
 		y++;
 	}
 }
-
+/*
+int fractal()
+{
+	
+}
+*/
 int		mandelbrot(t_mlx *mlx, int x, int y)
 {
 	t_cmplx	c;
@@ -103,4 +108,29 @@ int		meduza(t_mlx *mlx, int x, int y)
     	i++;
 	}
 	return (i);
+}
+
+
+int		sierpinski(t_mlx *mlx, int x, int y)
+{
+	t_cmplx	c;
+	t_cmplx	z;
+	size_t	max_i;
+	size_t	i;
+
+	i = 0;
+	max_i = mlx->depth;
+	c.im = mlx->max.im - y * mlx->scrn.im + mlx->y_mv;
+	c.re = mlx->min.re + x * mlx->scrn.re + mlx->x_mv;
+	z = init_cmplx(c.re, c.im);
+	while (z.re * z.re + z.im * z.im <= 4
+    	&& i < max_i)
+	{
+		if (z.re - (int)(z.re / 3) * 3 > 1.0 && z.im - (int)(z.re / 3) * 3 > 1.0 &&
+			z.re - (int)(z.re / 3) * 3 < 2.0 && z.im - (int)(z.re / 3) * 3 < 2.0)
+			return (0);
+    	z = init_cmplx(z.re / 3, z.im / 3);
+    	i++;
+	}
+	return (12);
 }

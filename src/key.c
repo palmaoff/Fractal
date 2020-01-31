@@ -78,7 +78,8 @@ int				key_press(int keycode, t_mlx *mlx)
 		mlx->depth += 5;
 	if (keycode == 78 && mlx->depth != 0)
 		mlx->depth -= 5;
-//	printf("%d\n", keycode);
+	if (keycode == 49)
+		mlx->f = &julia;
 	peaces(mlx);
 	return (0);
 }

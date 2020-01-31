@@ -3,23 +3,7 @@
 */
 
 #include "../includes/fract_ol.h"
-/*
-static	void	*peace(void *mlx)
-{
-	t_mlx *m;
-	int i;
 
-	m = (t_mlx *)mlx;
-	i = 0;
-	while (i < 20)
-	{
-		if (pthread_equal(pthread_self(), m->p[i]))
-			draw_fractal(m, i * (HEIGHT / 20), i * (HEIGHT / 20) + (HEIGHT / 20));
-		i++;
-	}
-	return (0);
-}
-*/
 static	void	*peace_too(void *peace)
 {
 	t_peace *p;

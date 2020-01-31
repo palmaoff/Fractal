@@ -21,14 +21,13 @@ int				zoom(int button, int x, int y, t_mlx *mlx)
 				+ mlx->min.re,
 		(double)y / (HEIGHT / (mlx->max.im - mlx->min.im))
 				* -1 + mlx->max.im);
-	printf("%d\n", button);
 	if (button == 4)
 		zoom = 0.95;
 	else if (button == 5)
-		zoom = 1.15;
+		zoom = 1.3;
 	else if (button == 1)
 	{
-		julia_motion(x, y, mlx);
+		mlx->bool = 1;
 		return (0);
 	}
 	else
@@ -37,7 +36,7 @@ int				zoom(int button, int x, int y, t_mlx *mlx)
 	mlx->min.re = change_it(crnt.re, mlx->min.re, zoom);
 	mlx->max.im = change_it(crnt.im, mlx->max.im, zoom);
 	mlx->min.im = change_it(crnt.im, mlx->min.im, zoom);
-	mlx->delta = (mlx->max.re - mlx->min.re) / 400;
+	mlx->delta = (mlx->max.re - mlx->min.re) / 300;
 	peaces(mlx);
 	return (0);
 }

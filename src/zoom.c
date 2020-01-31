@@ -2,7 +2,7 @@
 **	created by eflorean
 */
 
-#include "../includes/fract_ol.h"
+#include "../includes/fractol.h"
 
 static double	change_it(double start, double end, double interpolation)
 {

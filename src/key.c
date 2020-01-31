@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fract_ol.h"
+#include "../includes/fractol.h"
 
 void			die(char *str)
 {

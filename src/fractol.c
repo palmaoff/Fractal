@@ -1,4 +1,4 @@
-#include "../includes/fract_ol.h"
+#include "../includes/fractol.h"
 
 t_cmplx init_cmplx(double re, double im)
 {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fract_ol.h"
+#include "../includes/fractol.h"
 
 int		hook_exit(void *param)
 {
@@ -71,3 +71,7 @@ int		main(int ac, char **av)
 	mlx_loop(mlx.mlx);
 	return (0);
 }
+
+// limit for zoomout
+// change fractals in window
+// norm

@@ -2,7 +2,7 @@
 # define FRACT__OL_H
 # define WIDTH 720
 # define HEIGHT 720
-# define PEACES 50
+# define PEACES 10
 
 # include <stdio.h> // KILL ME
 # include "mlx.h"

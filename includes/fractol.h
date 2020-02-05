@@ -1,8 +1,8 @@
 #ifndef FRACT__OL_H
 # define FRACT__OL_H
-# define WIDTH 1080
-# define HEIGHT 1080
-# define PEACES 8
+# define WIDTH 720
+# define HEIGHT 720
+# define PEACES 50
 
 # include <stdio.h> // KILL ME
 # include "mlx.h"
@@ -56,7 +56,7 @@ typedef struct		s_peace
 
 void			img_new(t_mlx *mlx);
 void			fractol(t_mlx *mlx);
-void			die(char *str); // maybe
+void			die(char *str);
 int				key_press(int keycode, t_mlx *mlx);
 void			draw_fractal(t_mlx *mlx, int s, int e);
 int				mandelbrot(t_mlx *mlx, int x, int y);

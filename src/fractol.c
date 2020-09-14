@@ -32,12 +32,7 @@ void	draw_fractal(t_mlx *mlx, int s, int e)
 		y++;
 	}
 }
-/*
-int fractal()
-{
-	
-}
-*/
+
 int		mandelbrot(t_mlx *mlx, int x, int y)
 {
 	t_cmplx	c;
@@ -73,7 +68,6 @@ int		julia(t_mlx *mlx, int x, int y)
 	c.im = mlx->max.im - y * mlx->scrn.im + mlx->y_mv;
 	c.re = mlx->min.re + x * mlx->scrn.re + mlx->x_mv;
 	z = init_cmplx(c.re, c.im);
-//	mlx->k = init_cmplx(-0.4, 0.6);
 	k = mlx->k;
 	i = 0;
 	while (z.re * z.re + z.im * z.im <= 4

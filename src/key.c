@@ -41,6 +41,7 @@ static	int		key_press_too(int keycode, t_mlx *mlx)
 */
 int				key_press(int keycode, t_mlx *mlx)
 {
+	printf("%d\n", keycode);
 	mlx_destroy_image(mlx->mlx, (*mlx).img.img_ptr);
 	img_new(mlx);
 	if (keycode == 53)
@@ -74,7 +75,7 @@ int				key_press(int keycode, t_mlx *mlx)
 		mlx->b += 0x000001;
 	if (keycode == 92)
 		mlx->b = 0x000000;
-	if (keycode == 69 & mlx->depth != 500)
+	if (keycode == 69 && mlx->depth != 500)
 		mlx->depth += 5;
 	if (keycode == 78 && mlx->depth != 0)
 		mlx->depth -= 5;

@@ -62,7 +62,7 @@ int		main(int ac, char **av)
 	(void)av;
 	input(av[1], &mlx);
 	init(&mlx);
-	peaces(&mlx);
+	peaces(&mlx);	
 	mlx_hook(mlx.win, 2, 0, key_press, &mlx);
 	mlx_hook(mlx.win, 4, 0, zoom, &mlx);
 	mlx_hook(mlx.win, 6, 0, mouse_move, &mlx);
